@@ -5,3 +5,8 @@ export interface User{
     edit_others: number,
     username: string
 }
+export interface Server{
+    owner: string,
+    name: string,
+    id: string
+}

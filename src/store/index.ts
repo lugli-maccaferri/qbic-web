@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import api from "@/lib/api";
-import { User } from "@/type";
+import api, { auth_client, client } from "@/lib/api";
+import { User } from "@/types";
 import decode from "jwt-decode";
 
 Vue.use(Vuex);
@@ -10,7 +10,11 @@ const store = new Vuex.Store({
 
     state: {
         jwt: localStorage.getItem("jwt"),
-        user: {} as User
+        user: JSON.parse(localStorage.getItem("user") || "{}") as User
+    },
+    getters: {
+        jwt(state: any){ return state.jwt },
+        user(state: any){ return state.user }
     },
     mutations: {
 
@@ -19,6 +23,7 @@ const store = new Vuex.Store({
             state.jwt = obj.token;
             state.user = obj.data;
             localStorage.setItem("jwt", obj.token);
+            localStorage.setItem("user", JSON.stringify(obj.data));
 
         }
 
@@ -31,6 +36,8 @@ const store = new Vuex.Store({
 
                 const token = await api.auth.login(data.username, data.password);
                 const decoded = decode(token);
+                client.defaults.headers["Authorization"] = `Bearer ${token}`;
+                auth_client.defaults.headers["Authorization"] = `Bearer ${token}`;
 
                 context.commit('loginSuccess', {
                     data: decoded as User,

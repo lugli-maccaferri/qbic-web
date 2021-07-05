@@ -5,52 +5,124 @@ body{
     margin: 0;
     font-family: 'IBM Plex Sans', sans-serif;
 }
+#navbar{
+    position: fixed;
+    width: 80%;
+    height: 6.5vh;
+    top: 0;
+    left: 0; right: 0;
+    margin: auto;
+    background: $blue;
+    *{ color: white; }
+    a{ text-decoration: none; display: inline-block; padding-left: 10px; padding-right: 10px; }
+    .container{
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+    }
+}
+h1, h2, h3, h4, h5, h6{ margin: 0; font-weight: lighter; margin-top: 20px; }
+.greyed{
+    background: $grey;
+}
+.silvered{
+    background: $silver;
+}
+.redded{
+    background: $red;
+}
 section{
-    width: 90%;
-    min-height: 100vh;
+    width: 80%;
     margin: 0 auto !important;
-    h1{
-        &.title{
-            font-size: 5em;
-            font-weight: lighter;
-            margin: 0;
+    position: relative;
+    &.full{ min-height: 100vh; }
+    .content{
+        margin-top: 9vh;
+        width: 100%;
+    }
+    ul{
+        padding: 0;
+        list-style-type: none;
+        margin-top: 30px;
+        li{
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid $grey;
+            a{
+                text-decoration: none;
+                color: blue;
+                padding-bottom: 3px;
+                border-bottom: 1px solid $blue;
+            }
         }
     }
+    h1{
+        font-size: 3.5em;
+        &.title{ font-size: 5em; }
+    }
     .box{
+        &.rounded{
+            border-radius: 5px;
+            border: 3px solid $grey;
+            &:not(.no-hover):hover{
+                background: $grey;
+                color: $blue;
+                cursor: pointer;
+            }
+        }
+        &.padded{
+            padding: 10px;
+            margin-right: 5px;
+            margin-left: 5px;
+            &:nth-child(1){
+                margin-left: 0;
+            }
+        }
+        &.respect{
+            margin: 20px;
+        }
         &.medium{
             width: 500px;
+        }
+        &.adaptive{
+            max-width: 1000px;
+            width: 100%;
+        }
+        &.adaptive{
+            width: auto;
         }
     }
     form{
         width: 100%;
-        input{
-            max-width: 550px;
-            width: 100%;
-            height: 40px;
-            border-radius: 4px;
-            color: $black;
-            margin-top: 20px;
-            border: none;
-            padding: 2.5px;
-            text-indent: 15px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        }
-        button{
-            margin-top: 20px;
-            background: $blue;
-            border-radius: 5px;
-            color: $white;
-            border: none;
-            padding: 10px;
-            height: 40px;
-            max-width: 200px;
-            width: 100%;
-            font-family: 'IBM Plex Sans', sans-serif;
-        }
+    }
+    input{
+        max-width: 550px;
+        width: 100%;
+        height: 40px;
+        border-radius: 4px;
+        color: $black;
+        margin-top: 20px;
+        border: none;
+        padding: 2.5px;
+        text-indent: 15px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+    button{
+        margin-top: 20px;
+        background: $blue;
+        border-radius: 5px;
+        color: $white;
+        border: none;
+        padding: 10px;
+        height: 40px;
+        max-width: 200px;
+        width: 100%;
+        font-family: 'IBM Plex Sans', sans-serif;
     }
 }
 .flexbox{
     display: flex;
     &.justify-center{ justify-content: center; }
     &.align-center{ align-items: center; }
+    &.justify-between{ justify-content: space-between; }
 }
